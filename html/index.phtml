@@ -1,0 +1,79 @@
+<html>
+    <head>
+        <title>Audioeditor</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <!--link rel="stylesheet" href="css/reset.css" type="text/css"-->
+        <link rel="stylesheet" href="css/style.css" type="text/css">
+        <link rel="stylesheet" media="all" href="css/FilesDragger.css"/>
+      
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/Util.js"></script>
+        <script type="text/javascript" src="js/Worktable.js"></script>
+        <script type="text/javascript" src="js/Row.js"></script>
+        <script type="text/javascript" src="js/FilesDragger.js"></script>
+        
+        
+        <script type="text/javascript">
+            
+            var l = function(s) { console.log(s, Math.random());} 
+            $(document).ready(function() {
+                var worktable = new Worktable();
+                var row = worktable.createRow();
+                var row2 = worktable.createRow();
+                var sample = document.getElementById('trololo');
+                var sample2 = document.getElementById('trololo2');
+                
+                $(sample).bind('loadedmetadata', function() {
+                    row.addSample(sample, 10);
+                });
+                $(sample2).bind('loadedmetadata', function() {
+                    row2.addSample(sample, 15);
+                });
+                
+                
+                l(worktable)
+                
+                
+                // init dragging
+                var currentDragger = new FilesDragger();
+                var files = document.querySelectorAll('#files_tree .files_item');
+                [].forEach.call(files, function(file) {
+                    currentDragger.initDraggable(file)
+                })
+                currentDragger.initDropper(document.getElementById('dropper'));
+            });
+        </script>
+    </head>
+    <body>
+        <audio id="trololo" controls="controls">
+            <source src="samples/1.ogg" type="audio/ogg" />
+        </audio>        
+        <audio id="trololo2" controls="controls">
+            <source src="samples/1.ogg" type="audio/ogg" />
+        </audio>
+        <h1>AudioEditor</h1>
+        <div class="effects">
+            
+        </div>
+        <div class="samples">
+            
+        </div>
+        <div class="worktable">
+            <div class="rows">
+                
+            </div>
+            <div class="controls">
+                <input class="addRow" type="button" value="Add row">
+            </div>
+        </div>
+        <div class="completePlayer">
+            
+        </div>
+        <div class="files_tree" id="files_tree">
+           <?php echo $viewFilesTree; ?>
+        </div>
+        <div class="dropper" id="dropper" draggable="true">
+
+        </div>
+    </body>
+</html>
