@@ -1,0 +1,32 @@
+html,body{margin:0;padding:0;color:#7f858e;font:11px/16px Arial, Helvetica, sans-serif;text-align:center;height:100%;}
+img,a img{border:0;}
+a{color:#00cecf;text-decoration:underline;}
+a:hover{color:#c6dd2f;text-decoration:none;}
+a:focus,a:active,a:focus img,a:active img{outline:none;}
+div,span,object,iframe,
+h1,h2,h3,h4,h5,h6,p,blockquote,pre,
+a,abbr,acronym,address,code,
+del,dfn,em,q,dl,dt,dd,ul,ul li,
+fieldset,form,label,legend,
+table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;font-size:100%;list-style-type:none;}
+th,td{font-weight:normal;}
+.OuterOffset{height:auto;min-height:100%;margin-bottom:-101px;position:relative;}
+.OuterOff{min-width:870px;z-index:0;margin:0 auto;text-align:left;position:relative;}
+.Outer{min-width:870px;z-index:1;margin:0 auto 0 auto;text-align:left;position:relative;}
+.Inner {
+	width:870px;
+	margin:0 auto;
+	position:relative;
+	z-index:2;
+	/height:1%;
+}
+.ListGroups dt:after,.ListGroups dd:after,.clearfix:after{content:".";display:block;clear:both;visibility:hidden;line-height:0;height:0;}
+.clearfix,.ListGroups dt,.ListGroups dd{display:inline-block;}
+html[xmlns] .clearfix,html[xmlns] .ListGroups dt,html[xmlns] .ListGroups dd{display:block;}
+* html .clearfix{height:1%;}
+.center{text-align:center;}
+* html .fl,*html .fr{position:relative;z-index:2;}
+.fl{float:left;}
+.fr{float:right;}
+.clear{font-size:0;padding:0;margin:0;display:block!important;line-height:0;height:0; overflow:hidden;clear:both;}
+
