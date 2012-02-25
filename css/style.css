@@ -6,7 +6,10 @@ audio {display: none;}
     border:1px dotted silver;
     padding: 4px;
 }
-
+.row img {
+    cursor: pointer;
+    
+}
 .rows canvas {
     height: 30px;
     border:1px solid blue;

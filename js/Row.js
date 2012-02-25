@@ -14,7 +14,7 @@ Row.prototype = {
             this.id = Util.randomString();
         }
         this.containerId = 'row-' + this.id;
-        this.container = '<div class="row" id="row-' + this.id + '"></div>';  
+        this.container = '<div class="row" id="row-' + this.id + '"><img src="img/play.png"></div>';  
     },
     
     redraw: function() {
