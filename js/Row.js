@@ -11,7 +11,7 @@ Row.prototype = {
         if (id != undefined) {
             this.id = id;
         } else {
-            this.id = randomString();
+            this.id = Util.randomString();
         }
         this.containerId = 'row-' + this.id;
         this.container = '<div class="row" id="row-' + this.id + '"></div>';  
@@ -21,16 +21,19 @@ Row.prototype = {
         
     },
     
-    addSample: function(sample, index) {
-        if (index == undefined) {
-            index = this.samples.length;
-        }
-        var width = sample.duration * Row.WIDTH_COEF;
-        var container = '<div class="sample" style="width: ' + width + 'px"></div>';
-        $(this.container).append(container);
+    addSample: function(sample, offset) {
+        l(sample)
+        var width = Math.round(sample.duration * Row.WIDTH_COEF);
+        offset = offset * Row.PIXEL_PER_SECOND;
+        var container = '<canvas class="sample" style="width: ' + width + 'px; left: ' + offset + 'px"></canvas>';
+        container = $(container);
+        container.data('sample', sample);
+        $('#row-' + this.id).append(container);
+        
         this.samples.push(container);
     }
     
 }
 
-Row.WIDTH_COEF = 1;
+Row.WIDTH_COEF = 3;
+Row.PIXEL_PER_SECOND = 3;

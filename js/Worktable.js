@@ -9,25 +9,19 @@ Worktable.prototype = {
         this.container = $('.worktable .rows');
         $('.controls .addRow').bind('click', Util.bind(this.createRow, this));
     },
-    
-    addSample: function() {
-        
-    },
-    
+    getRow:function(index) {
+        if (this.rows[index] != undefined)
+            return this.rows[index];
+        else 
+            return null;
+    },   
     getRows: function() {
-        
+        return this.rows;
     },
-    
     createRow: function(id) {
         var row = new Row(id);
         this.rows.push(row);
-        
         $(this.container).append(row.container);
-    },
-    
-    getRows: function() {
-        
+        return row;
     }
-    
-    
 }

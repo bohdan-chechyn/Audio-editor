@@ -11,14 +11,34 @@
         <script type="text/javascript" src="js/Row.js"></script>
     
         <script type="text/javascript">
+            
             var l = function(s) { console.log(s, Math.random());} 
             $(document).ready(function() {
                 var worktable = new Worktable();
+                var row = worktable.createRow();
+                var row2 = worktable.createRow();
+                var sample = document.getElementById('trololo');
+                var sample2 = document.getElementById('trololo2');
+                
+                $(sample).bind('loadedmetadata', function() {
+                    row.addSample(sample, 10);
+                });
+                $(sample2).bind('loadedmetadata', function() {
+                    row2.addSample(sample, 15);
+                });
+                
+                
                 l(worktable)
             });
         </script>
     </head>
     <body>
+        <audio id="trololo" controls="controls">
+            <source src="samples/1.ogg" type="audio/ogg" />
+        </audio>        
+        <audio id="trololo2" controls="controls">
+            <source src="samples/1.ogg" type="audio/ogg" />
+        </audio>
         <h1>AudioEditor</h1>
         <div class="effects">
             
