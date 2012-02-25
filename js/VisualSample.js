@@ -4,7 +4,6 @@ var VisualSample = function(options) {
 VisualSample.prototype = {
     container: null,
     init: function(options) {
-        l(options);
         var container = $('#sample-template').html()
         .replace('${width}', options.width)
         .replace('${offset}', options.offset);
