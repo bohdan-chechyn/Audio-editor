@@ -2,10 +2,40 @@
     <head>
         <title>Audioeditor</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="/css/reset.css" type="text/css">
-        <link rel="stylesheet" href="/css/style.css" type="text/css">
+        <!--link rel="stylesheet" href="css/reset.css" type="text/css"-->
+        <link rel="stylesheet" href="css/style.css" type="text/css">
+       
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/Util.js"></script>
+        <script type="text/javascript" src="js/Worktable.js"></script>
+        <script type="text/javascript" src="js/Row.js"></script>
+    
+        <script type="text/javascript">
+            var l = function(s) { console.log(s, Math.random());} 
+            $(document).ready(function() {
+                var worktable = new Worktable();
+                l(worktable)
+            });
+        </script>
     </head>
     <body>
-        <h1>TEST</h1>
+        <h1>AudioEditor</h1>
+        <div class="effects">
+            
+        </div>
+        <div class="samples">
+            
+        </div>
+        <div class="worktable">
+            <div class="rows">
+                
+            </div>
+            <div class="controls">
+                <input class="addRow" type="button" value="Add row">
+            </div>
+        </div>
+        <div class="completePlayer">
+            
+        </div>
     </body>
 </html>
