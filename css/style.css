@@ -8,10 +8,40 @@ audio {display: none;}
 }
 .row img {
     cursor: pointer;
-    
+    margin-left: -16px;
 }
-.rows canvas {
+
+.rows .sample {
+    position: relative;
+    height: 30px;
+    margin-top: -30px;
+}
+.rows .tools {
+    position: absolute;
+    display:none;
+    top: 30px;
+    left: 0px;
+    z-index: 100;
+    width: 100%;
+    border:1px solid red;
+    border-radius: 4px;
+    padding: 4px;
+    background: white;
+}
+.rows .tools .volume {
+    width: 100px;
+    height:10px;
+    margin: 3px 10px;
+}
+.rows .tools .close {
+    position: absolute;
+    top: 0;
+    right: 5px;
+}
+.sample canvas {
     height: 30px;
     border:1px solid blue;
-    position: relative;
+    position: absolute;
+    top:0; left:0;
+    z-index: 10;
 }

@@ -22,15 +22,17 @@ Row.prototype = {
     },
     
     addSample: function(sample, offset) {
-        l(sample)
+        var sampleId = 'sample-' + this.samples.length;
         var width = Math.round(sample.duration * Row.WIDTH_COEF);
         offset = offset * Row.PIXEL_PER_SECOND;
-        var container = '<canvas class="sample" style="width: ' + width + 'px; left: ' + offset + 'px"></canvas>';
-        container = $(container);
-        container.data('sample', sample);
-        $('#row-' + this.id).append(container);
         
-        this.samples.push(container);
+        var visualSample = new VisualSample({ sample: sample
+                                            , width: width
+                                            , offset: offset
+                                            , sampleId: sampleId});
+        
+        $('#row-' + this.id).append(visualSample.container);
+        this.samples.push(visualSample);
     }
     
 }

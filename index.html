@@ -8,6 +8,7 @@
         <script type="text/javascript" src="js/jquery.min.js"></script>
         <script type="text/javascript" src="js/Util.js"></script>
         <script type="text/javascript" src="js/Worktable.js"></script>
+        <script type="text/javascript" src="js/VisualSample.js"></script> 
         <script type="text/javascript" src="js/Row.js"></script>
     
         <script type="text/javascript">
@@ -21,14 +22,12 @@
                 var sample2 = document.getElementById('trololo2');
                 
                 $(sample).bind('loadedmetadata', function() {
-                    row.addSample(sample, 10);
+                    row.addSample(sample, 6);
                 });
                 $(sample2).bind('loadedmetadata', function() {
                     row2.addSample(sample, 15);
                 });
                 
-                
-                l(worktable)
             });
         </script>
     </head>
@@ -57,5 +56,15 @@
         <div class="completePlayer">
             
         </div>
+        
+        <script type="text/template" id="sample-template">
+            <div class="sample" style="width: ${width}px; left: ${offset}px">
+                <div class="tools">
+                    <div class="volume"></div>
+                    <div class="close">X</div>        
+                </div>
+                <canvas></canvas>
+            </div>
+        </script>
     </body>
 </html>
