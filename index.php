@@ -1,5 +1,4 @@
 <?php
-
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -13,5 +12,5 @@ $files = $fileSystem->getFileList(__DIR__."/samples/");
 
 $viewFilesTree = FilesTree::drawTree($files, 0, "");
 
-include '/html/index.phtml';
-?>
+include 'html/index.phtml';
+
