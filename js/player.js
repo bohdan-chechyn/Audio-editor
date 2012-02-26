@@ -16,7 +16,7 @@ AudioSample.prototype = {
     offset: 0,
     
     getParams: function() {
-        return {offset: this.offset / 1000, src: this.audio.src.match(/[^/]+$/)[0], volume: this.audio.volume};
+        return {offset: this.offset / 1000, src: this.audio.src.replace(location.href, ''), volume: this.audio.volume};
     }
 }
 
@@ -53,6 +53,7 @@ Player.prototype = {
     },
     
     requestMix: function() {
+        console.log(this.getParams());
         $mixForm = $mixForm || $('<form method="POST" action="mix.php" style="display:none"><input name="samples" /></form>').appendTo(document.body);
         $mixForm.find('input').val(JSON.stringify(this.getParams()));
         $mixForm.submit();

@@ -51,7 +51,55 @@
                         var sample = samples[i].container.data('sample');
                         var offset = samples[i].container.offset().left - sample.duration/2 * Row.WIDTH_COEF;
                             
-                        player.addSample(sample.currentSrc, Math.round(offset/Row.PIXEL_PER_SECOND * 1000));
+                        var playerSample = player.addSample(sample.currentSrc, Math.round(offset/Row.PIXEL_PER_SECOND * 1000));
+                        //////////////////////////////////////
+                                var canvas   = $(samples[i].container).find('canvas')[0],
+                                    context  = canvas.getContext('2d'),
+                                    gradient = context.createLinearGradient(0, -1, 0, 1);
+
+                            var spectrum = [
+                                '#FF00FF', // 5, Magenta, 300°
+                                '#0000FF', // 4, Blue,    240°
+                                '#00FFFF', // 3, Cyan,    180°
+                                '#00FF00', // 2, Green,   120°
+                                '#FFFF00', // 1, Yellow,   60°
+                                '#FF0000'  // 0, Red,       0°
+                            ];
+                                    
+                                [1, -1].forEach(function(k) {
+                                    k /= 2 * (spectrum.length - 1);
+                                    spectrum.forEach(function(color, i) {
+                                        gradient.addColorStop(0.5 + k * i, color);
+                                    });
+                                });
+                                
+                                context.scale(canvas.width / (sample.duration * sample.mozSampleRate), -canvas.height / 2);
+                                context.translate(0, -1);
+                                context.fillStyle = gradient;
+                                
+                                var lastPower = 0;
+                                
+                                $(playerSample.audio).bind('MozAudioAvailable', function(event) {
+                                    mozRequestAnimationFrame(function () {
+                                        var buffer = event.originalEvent.frameBuffer,
+                                            bufferWidth = buffer.length;
+                                        
+                                        context.translate(event.originalEvent.time * sample.mozSampleRate, 0);
+                                        context.beginPath();
+                                        {
+                                            context.moveTo(0, lastPower);
+                                            for (var i = 0, x = 1; i < buffer.length; i++, x++) {
+                                                context.lineTo(x, buffer[i]);
+                                            }
+                                            lastPower = buffer[buffer.length - 1];
+                                            context.lineTo(bufferWidth, 0);
+                                            context.lineTo(0, 0);
+                                        }
+                                        context.fill();
+                                        context.translate(-event.originalEvent.time * sample.mozSampleRate, 0);
+                                    });
+                                });
+                   /////////////////////////     
                     } 
                     player.play();
                 });
