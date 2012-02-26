@@ -5,6 +5,7 @@ var Worktable = function() {
 Worktable.prototype = {
     rows: [],
     container: null,
+    dragger: null,
     init: function() {
         this.container = $('.worktable .rows');
         $('.controls .addRow').bind('click', Util.bind(this.createRow, this));
@@ -18,10 +19,14 @@ Worktable.prototype = {
     getRows: function() {
         return this.rows;
     },
-    createRow: function(id) {
-        var row = new Row(id);
+    createRow: function() {
+        var row = new Row(this.rows.length);
         this.rows.push(row);
         $(this.container).append(row.container);
         return row;
+    },
+    
+    setFilesDragger: function(fd) {
+        this.dragger = fd;
     }
 }

@@ -6,6 +6,7 @@ VisualSample.prototype = {
     init: function(options) {
         var container = $('#sample-template').html()
         .replace('${width}', options.width)
+        .replace('${title}', options.title)
         .replace('${offset}', options.offset);
         container = $(container);
         container.id = options.sampleId;

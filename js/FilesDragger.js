@@ -1,10 +1,10 @@
-/* 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-function FilesDragger() 
+function FilesDragger(options) 
 {
+    if (options != undefined) {
+        if (options.dropCallback != undefined) {
+            this.handlerDrop = options.dropCallback;
+        }
+    }
    this.initDraggable = function (element) 
    {
       element.addEventListener('dragstart', this.handlerDragStart, false);
@@ -17,24 +17,27 @@ function FilesDragger()
       element.addEventListener('dragover', this.handleDragOver, false);
       element.addEventListener('dragenter', this.handleDragEnter, false);
    }
-   this.handlerDrop = function(e)
-   {
-      e.stopPropagation(); // Stops some browsers from redirecting.
-      e.preventDefault();
-
-
-      //alert(e.dataTransfer.getData('text/html'));
-      //dragSrcEl.innerHTML = this.innerHTML;
-      this.innerHTML += e.dataTransfer.getData('text/html');
-      // get event data
-      
-      return false;
-   };
+   if (this.handlerDrop == undefined) {
+       this.handlerDrop = function(e)
+       {
+          e.stopPropagation(); // Stops some browsers from redirecting.
+          e.preventDefault();
+          //alert(e.dataTransfer.getData('text/html'));
+          //dragSrcEl.innerHTML = this.innerHTML;
+          this.innerHTML += e.dataTransfer.getData('text/html');
+          // get event data
+          return false;
+       };
+   }
    this.handlerDragStart = function(e) {
       // got it
-
+      
       e.dataTransfer.effectAllowed = 'move';
+<<<<<<< HEAD
       e.dataTransfer.setData('text/html', '<audio data-name="'+this.getAttribute('data-name')+'" data-color="'+this.getAttribute('data-color')+'" controls="controls"><source src="'+this.getAttribute('data-url')+'" type="audio/ogg" /></audio>');
+=======
+      e.dataTransfer.setData('text/html', '<audio data-title="' + $(this).find('header').text() + '" controls="controls"><source src="'+this.getAttribute('url')+'" /></audio>');
+>>>>>>> dbdbc4f751c62387f4f0a5770cedb7996cc01b5b
 
       this.style.opacity = '0.4'; 
       return false;
