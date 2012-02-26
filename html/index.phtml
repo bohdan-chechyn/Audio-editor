@@ -47,13 +47,13 @@
                 $('#startPlayer').click(function() {
                     player.samples = [];
                     var samples = worktable.getSamples();
-                    for (var i = 0; i < samples.length; i++) {
-                        var sample = samples[i].container.data('sample');
-                        var offset = samples[i].container.offset().left - sample.duration/2 * Row.WIDTH_COEF;
+                    samples.forEach(function(samples_i, i) {
+                        var sample = samples_i.container.data('sample');
+                        var offset = samples_i.container.offset().left - sample.duration/2 * Row.WIDTH_COEF;
                             
-                        var playerSample = player.addSample(sample.currentSrc, Math.round(offset/Row.PIXEL_PER_SECOND * 1000));
+                        var playerSample = player.addSample(sample, Math.round(offset/Row.PIXEL_PER_SECOND * 1000));
                         //////////////////////////////////////
-                                var canvas   = $(samples[i].container).find('canvas')[0],
+                                var canvas   = $(samples_i.container).find('canvas')[0],
                                     context  = canvas.getContext('2d'),
                                     gradient = context.createLinearGradient(0, -1, 0, 1);
 
@@ -80,7 +80,7 @@
                                 var lastPower = 0;
                                 
                                 $(playerSample.audio).bind('MozAudioAvailable', function(event) {
-                                    mozRequestAnimationFrame(function () {
+                                    //mozRequestAnimationFrame(function () {
                                         var buffer = event.originalEvent.frameBuffer,
                                             bufferWidth = buffer.length;
                                         
@@ -97,10 +97,10 @@
                                         }
                                         context.fill();
                                         context.translate(-event.originalEvent.time * sample.mozSampleRate, 0);
-                                    });
+                                    //});
                                 });
                    /////////////////////////     
-                    } 
+                    });
                     player.play();
                 });
                 var files = document.querySelectorAll('#files_tree .files_item');

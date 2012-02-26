@@ -1,15 +1,8 @@
 (function() {
     
-function AudioSample(src, offset) {
+function AudioSample(audio, offset) {
     this.offset = Number(offset) || this.offset;
-    this.audio = new Audio();
-    this.audio.src = String(src) || this.audio.src;
-    this.audio.preload = 'auto';
-    
-    /* temporary { */
-    this.audio.controls = 'controls';
-    document.body.appendChild(this.audio);
-    /* } temporary */
+    this.audio = audio;
 }
 
 AudioSample.prototype = {
@@ -27,8 +20,8 @@ function Player() {
 var $mixForm;
 
 Player.prototype = {
-    addSample: function(src, offset) {
-        var sample = new AudioSample(src, offset);
+    addSample: function(audio, offset) {
+        var sample = new AudioSample(audio, offset);
         this.samples.push(sample);
         return sample;
     },
