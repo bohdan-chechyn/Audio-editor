@@ -52,14 +52,19 @@
                     }
 
                 });
+                var barInterval, $bar = $('.bar');
                 $('#startPlayer').click(function() {
                     var samples = worktable.getSamples();
+                    console.log(Math.round(1000 / Row.PIXEL_PER_SECOND));
+                    barInterval = setInterval(function() {
+                        $bar.offset({left: $bar.offset().left + 10});
+                    }, Math.round(10000 / Row.PIXEL_PER_SECOND));
                     play(samples);
                     $('#startPlayer').addClass("play_off");
                     $('#stopPlayer').removeClass("stop_off");
                 });
                 $('#stopPlayer').click(function(){
-                    
+                    clearInterval(barInterval);
                     $('#startPlayer').removeClass("play_off");
                     $('#stopPlayer').addClass("stop_off"); 
                 });
@@ -67,7 +72,8 @@
                 [].forEach.call(files, function(file) {
                     currentDragger.initDraggable(file)
                 })
-                currentDragger.initDropper(document.getElementById('dropper'));              
+                currentDragger.initDropper(document.getElementById('dropper'));    
+
                 
                 $('#files_tree').accordion({"active": 1});
 //                $('#files_tree').accordion("show", 0);
@@ -76,6 +82,7 @@
 //                    $(this).next().toggle('slow');
 //                    return false;
 //                }).next().hide();
+
                 function play(samples) {
                     player.samples = [];
                     samples.forEach(function(samples_i, i) {
@@ -109,7 +116,6 @@
                         var lastPower = 0;
                                 
                         $(playerSample.audio).bind('MozAudioAvailable', function(event) {
-                            //mozRequestAnimationFrame(function () {
                             var buffer = event.originalEvent.frameBuffer,
                             bufferWidth = buffer.length;
                                         
@@ -126,7 +132,6 @@
                             }
                             context.fill();
                             context.translate(-event.originalEvent.time * sample.mozSampleRate, 0);
-                            //});
                         });
                         /////////////////////////     
                     });
@@ -194,13 +199,13 @@
 
         </div>
         <script type="text/template" id="sample-template">
-            <div class="sample" style="left: ${offset}px;">
+            <div class="sample" style="left: ${offset}px; float: left">
                 <div class="tools">
-                    <input type="range" name="volume" value="100" >
+                    <div>${title}</div>
+                    <input type="range" name="volume" value="100" />
                     <div class="close">X</div>        
                 </div>
-                <canvas style=" border-color: ${color}"></canvas>
-                <span>${title}</span>
+                <canvas style="border-color: ${color}"></canvas>
             </div>
         </script>
 

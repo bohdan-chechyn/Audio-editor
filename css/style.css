@@ -26,7 +26,7 @@ audio {display: none;}
     left: 0px;
     z-index: 100;
     width: 110px;
-    height: 20px;
+    height: 50px;
     border:1px solid red;
     border-radius: 4px;
     padding: 4px;
@@ -39,7 +39,7 @@ audio {display: none;}
 }
 .rows .tools .close {
     position: absolute;
-    top: 0;
+    top: 15px;
     right: 5px;
 }
 .sample {
@@ -180,7 +180,7 @@ h1 {
     bottom: 0;
 }
 .progress .bar {
-    width: 30px;
+    width: 10px;
     height: 20px;
     bottom: 0;
     position: absolute;
