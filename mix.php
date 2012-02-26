@@ -1,6 +1,6 @@
 <?php
 header('Content-Type: application/octet-stream');
-header('Content-Disposition: attachment; filename=output.txt');
+header('Content-Disposition: attachment; filename=output.ogg');
 header('Content-Transfer-Encoding: binary');
 header('Expires: 0');
 header('Cache-Control: must-revalidate');
@@ -16,5 +16,4 @@ foreach($samples as $index => $sample) {
 $args[] = "sox - -t ogg -";
 
 $cmd = implode('|', $args);
-echo $cmd;
-//passthru($cmd);
+passthru($cmd);

@@ -9,7 +9,7 @@ AudioSample.prototype = {
     offset: 0,
     
     getParams: function() {
-        return {offset: this.offset / 1000, src: this.audio.src.replace(location.href, ''), volume: this.audio.volume};
+        return {offset: this.offset / 1000, src: this.audio.currentSrc.replace(location.href, ''), volume: this.audio.volume};
     }
 }
 
