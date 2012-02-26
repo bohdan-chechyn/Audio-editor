@@ -49,19 +49,14 @@
                 [].forEach.call(files, function(file) {
                     currentDragger.initDraggable(file)
                 })
-                currentDragger.initDropper(document.getElementById('dropper'));
-<<<<<<< HEAD
-
-                
-=======
-                
+                currentDragger.initDropper(document.getElementById('dropper'));              
                 
                 $('#files_tree').accordion();
                 $('#files_tree h').click(function() {
                 $(this).next().toggle('slow');
                     return false;
                 }).next().hide();
->>>>>>> d11cfcec1203d169d6facd10ea6102ed37861f20
+
             });
         </script>
     </head>

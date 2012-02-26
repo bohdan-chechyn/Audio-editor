@@ -27,7 +27,7 @@
 
 
             ['samples/1.ogg', 'samples/2.ogg'].forEach(function(src, index) {
-                var sample   = player.addSample(src, index * 2000), 
+                var sample   = player.addSample(src), 
                     canvas   = document.createElement('canvas'),
                     context  = canvas.getContext('2d'),
                     gradient = context.createLinearGradient(0, -1, 0, 1);

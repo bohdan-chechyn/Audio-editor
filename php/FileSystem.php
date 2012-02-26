@@ -39,10 +39,10 @@ class FileSystem
             $retval[] = array(
                 "pure_name"   => $entry,
                 "name" => "$dir$entry",
-                "type" => mime_content_type("$dir$entry"),
+                //"type" => mime_content_type("$dir$entry"),
                 "size" => filesize("$dir$entry"),
                 "lastmod" => filemtime("$dir$entry"),
-                "url"      => "/samples/$category$entry",
+                "url"      => "samples/$category$entry",
             );
          }
       }
