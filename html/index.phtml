@@ -36,7 +36,7 @@
                             var offset = e.clientX - $('#row-' + row.id).offset().left - sample.duration/2 * Row.WIDTH_COEF;
                             row.addSample(sample, offset);
                             
-                            player.addSample(sample.currentSrc, Math.round(offset/Row.PIXEL_PER_SECOND) * 1000);
+                            player.addSample(sample.currentSrc, Math.round(offset/Row.PIXEL_PER_SECOND * 1000));
                          })
                     }
 
