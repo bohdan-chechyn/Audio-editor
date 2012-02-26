@@ -115,35 +115,45 @@ h1 {
     width: 19%;
 }
 
+._site_table_control_cell
+{
+    height: 4em;
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+}
 
 .play_button {
-    width: 40px;
-    padding: 0 15px;
+    width: 4.5%;
+    padding: 0 0.5em;
     float: left;
     cursor: pointer;
 }
 .stop_button {
-    width: 50px;
-    padding: 0 24px;
+    width: 5%;
+    padding-left: 1em;
+    padding-right: 2em;
     float: left;
 }
 .play_button div {
 
     width: 0;
     height: 0;
-    border-top: 30px solid transparent;
-    border-bottom: 30px solid transparent;
+    border-top: 25px solid transparent;
+    border-bottom: 25px solid transparent;
 
-    border-left: 50px solid;
+    border-left: 44px solid;
     border-left-color: #b86767;
 
 }
 .stop_button .stop_button_part {
-    width: 8px;
+    width: 100%;
     padding-right: 10px;
     height: 60px;
     float:left;
     background-color: #b86767;
+    margin-top: 0.2em; 
+    height: 3em;
 }
 
 .stop_button .space {
@@ -152,8 +162,8 @@ h1 {
     height: 10px;
 }
 .progress {
-    width: 525px;
-    height: 60px;
+    width: 78%;
+    height: 3.3em;
     float:left;
     position: relative;
 }
