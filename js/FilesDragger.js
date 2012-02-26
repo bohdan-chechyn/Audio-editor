@@ -33,7 +33,15 @@ function FilesDragger(options)
       // got it
       
       e.dataTransfer.effectAllowed = 'move';
+<<<<<<< HEAD
       e.dataTransfer.setData('text/html', '<audio data-title="' + $(this).find('header').text() + '" controls="controls"><source src="'+this.getAttribute('url')+'" type="audio/ogg" /></audio>');
+=======
+<<<<<<< HEAD
+      e.dataTransfer.setData('text/html', '<audio data-name="'+this.getAttribute('data-name')+'" data-color="'+this.getAttribute('data-color')+'" controls="controls"><source src="'+this.getAttribute('data-url')+'" type="audio/ogg" /></audio>');
+=======
+      e.dataTransfer.setData('text/html', '<audio data-title="' + $(this).find('header').text() + '" controls="controls"><source src="'+this.getAttribute('url')+'" /></audio>');
+>>>>>>> dbdbc4f751c62387f4f0a5770cedb7996cc01b5b
+>>>>>>> d11cfcec1203d169d6facd10ea6102ed37861f20
 
       this.style.opacity = '0.4'; 
       return false;

@@ -22,3 +22,13 @@
    height: 400px;
    background: #ddd;
 }
+
+.files_tree 
+{
+    font-family: Tahoma;
+    font-size: 14px;
+    width: 250px;
+    height: 400px;
+    overflow: scroll;
+    background: #eee;
+}

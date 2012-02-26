@@ -7,7 +7,7 @@ class FileSystem
     * @param string $dir
     * @return type 
     */
-   public function getFileList($dir) 
+   public function getFileList($dir, $parentDirName="") 
    {
       // array to hold return value
       $retval = array();
@@ -31,7 +31,7 @@ class FileSystem
                 "lastmod" => filemtime("$dir$entry"),
                 "url" => "",
             );
-            $fileInfo["content"] = $this->getFileList("$dir$entry");
+            $fileInfo["content"] = $this->getFileList("$dir$entry", $entry."/");
             $retval[] = $fileInfo;
             
          } elseif (is_readable("$dir$entry")) {

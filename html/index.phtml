@@ -12,8 +12,15 @@
         <script type="text/javascript" src="js/VisualSample.js"></script> 
         <script type="text/javascript" src="js/Row.js"></script>
         <script type="text/javascript" src="js/FilesDragger.js"></script>
+<<<<<<< HEAD
         <script type="text/javascript" src="js/html5slider.js"></script>
         <script type="text/javascript" src="js/player.js"></script>
+=======
+        <script type="text/javascript" src="js/jquery-ui/js/jquery-ui-1.8.18.custom.min.js"></script>
+        
+        
+        
+>>>>>>> d11cfcec1203d169d6facd10ea6102ed37861f20
         <script type="text/javascript">
             
             var l = function(s) { console.log(s, Math.random());} 
@@ -49,8 +56,18 @@
                     currentDragger.initDraggable(file)
                 })
                 currentDragger.initDropper(document.getElementById('dropper'));
+<<<<<<< HEAD
 
                 
+=======
+                
+                
+                $('#files_tree').accordion();
+                $('#files_tree h').click(function() {
+                $(this).next().toggle('slow');
+                    return false;
+                }).next().hide();
+>>>>>>> d11cfcec1203d169d6facd10ea6102ed37861f20
             });
         </script>
     </head>
