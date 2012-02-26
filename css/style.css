@@ -6,7 +6,6 @@ audio {display: none;}
     margin-bottom: 20px;
 }
 .rows {
-    margin-left: 50px;
 }
 .row img {
     cursor: pointer;
@@ -109,7 +108,7 @@ h1 {
     padding: 0.3% !important;
     margin: 0 !important;
     text-align: center;
-    font-size: 0.78em;
+    font-size: 0.58em;
 }
 ._site_table_left_cell {
     width: 19%;
@@ -189,7 +188,8 @@ h1 {
 
 ._site_table_right_cell {
     width: 18%;
-
+    vertical-align: top;
+    text-align: right;
 }
 .track_info {
     padding-left: 12px;
@@ -205,9 +205,15 @@ h1 {
     margin-bottom: 3%;
 }
 .sample_icon{
-    background: #a9df9a;
-    width: 7%;
-    height: 100%;
+    width: 0;
+    height: 0;
+    border-top: 11px solid transparent;
+    border-bottom: 11px solid transparent;
+
+    border-left: 26px solid;
+    border-left-color: #a9df9a;
+    
+    
     position:absolute;
     left: 0;
     top:1px;
@@ -231,4 +237,17 @@ h1 {
 ._site_table_left_cell{
     vertical-align: top;
     margin: 1% !important;
+}
+.addRow{
+    display: block;
+    width: 100%;
+    border:0px;
+    padding: 5px;
+    background: #99cf7a;
+    font-weight: bold;
+    color:#fff;
+    border-radius: 5px;
+    float:right;
+    width: 10em;
+    margin-right: 2%;
 }

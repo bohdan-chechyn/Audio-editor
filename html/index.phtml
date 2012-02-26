@@ -176,20 +176,22 @@
                 </tr>
                 <tr class="_site_body_row" valign="top">
                     <td class="_site_table_left_cell">
-                        <div class="sample_category_items" id="files_tree">
+                        <div class="sample_category_items" id="files_tree" style="overflow: auto;">
 
                             <?php echo $viewFilesTree; ?>
 
                         </div>
                     </td>
                     <td>
+                        <div class="controls">
+                                <input class="addRow" type="button" value="Add row">
+                            </div>
+                        <div style="clear:both;"></div>
                         <div class="track_handler worktable" >
                             <div class="rows" id="dropper"  draggable="true">
 
                             </div>
-                            <div class="controls">
-                                <input class="addRow" type="button" value="Add row">
-                            </div>
+                            
                         </div>
                     </td>
                     <td class="_site_table_right_cell"></td>
