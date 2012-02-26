@@ -27,7 +27,13 @@
             
                 var currentDragger = new FilesDragger({
                     dropCallback: function(e) {
-                        var row = e.target;
+                        var row;
+                        if (e.originalTarget.className == 'row') {
+                            row = e.target;
+                        } else {
+                            row = e.target.parentNode;
+                        }
+                        l(row);
                         rowId = row.id.split('-')[1];
                         var row = worktable.getRow(rowId);
                         var sample = $(e.dataTransfer.getData('text/html'))[0];
