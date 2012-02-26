@@ -237,3 +237,16 @@ h1 {
     vertical-align: top;
     margin: 1% !important;
 }
+.addRow{
+    display: block;
+    width: 100%;
+    border:0px;
+    padding: 5px;
+    background: #99cf7a;
+    font-weight: bold;
+    color:#fff;
+    border-radius: 5px;
+    float:right;
+    width: 10em;
+    margin-right: 2%;
+}
