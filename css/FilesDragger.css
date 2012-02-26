@@ -16,6 +16,7 @@
   -khtml-user-select: none;
   -webkit-user-select: none;
   user-select: none;
+  cursor: move;
 }
 .dropper {
    width: 400px;
@@ -31,4 +32,7 @@
     height: 400px;
     overflow: scroll;
     background: #eee;
+}
+#files_tree h3{
+    cursor: pointer;
 }

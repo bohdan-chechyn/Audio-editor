@@ -108,7 +108,7 @@ h1 {
     padding: 0.3% !important;
     margin: 0 !important;
     text-align: center;
-    font-size: 0.78em;
+    font-size: 0.58em;
 }
 ._site_table_left_cell {
     width: 19%;
@@ -188,7 +188,8 @@ h1 {
 
 ._site_table_right_cell {
     width: 18%;
-
+    vertical-align: top;
+    text-align: right;
 }
 .track_info {
     padding-left: 12px;
