@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
     <head>
         <title>Audioeditor</title>
@@ -5,7 +6,7 @@
         <!--link rel="stylesheet" href="css/reset.css" type="text/css"-->
         <link rel="stylesheet" href="css/style.css" type="text/css">
         <link rel="stylesheet" media="all" href="css/FilesDragger.css"/>
-      
+
         <script type="text/javascript" src="js/jquery.min.js"></script>
         <script type="text/javascript" src="js/Util.js"></script>
         <script type="text/javascript" src="js/Worktable.js"></script>
@@ -24,84 +25,36 @@
                 var row2 = worktable.createRow();
                 
                 var player = new Player();
-            
+                $('.row .sample_icon').live('click', function() {
+                    var rowHtmlId = $(this).parent()[0].id;
+                    var rowId = rowHtmlId.split('-')[1];
+                    var row = worktable.getRow(rowId);
+                    var samples = row.samples;
+                    play(samples);
+                });
                 var currentDragger = new FilesDragger({
                     dropCallback: function(e) {
                         var row;
-                        if (e.originalTarget.className == 'row') {
+                        if (e.originalTarget.className == 'sample_row') {
                             row = e.target;
                         } else {
                             row = e.target.parentNode;
                         }
+                        row = $(row).parent()[0];
                         rowId = row.id.split('-')[1];
                         var row = worktable.getRow(rowId);
                         var sample = $(e.dataTransfer.getData('text/html'))[0];
 
                         $(sample).bind('loadedmetadata',function(){
-                            var offset = e.clientX - $('#row-' + row.id).offset().left - sample.duration/2 * Row.WIDTH_COEF;
+                            var offset = e.clientX - $('#row-' + row.id + ' .sample_row').offset().left - sample.duration/2 * Row.WIDTH_COEF;
                             row.addSample(sample, offset);
                         });
                     }
 
                 });
                 $('#startPlayer').click(function() {
-                    player.samples = [];
                     var samples = worktable.getSamples();
-                    samples.forEach(function(samples_i, i) {
-                        var sample = samples_i.container.data('sample');
-                        var offset = samples_i.container.offset().left - sample.duration/2 * Row.WIDTH_COEF;
-                            
-                        var playerSample = player.addSample(sample, Math.round(offset/Row.PIXEL_PER_SECOND * 1000));
-                        //////////////////////////////////////
-                                var canvas   = $(samples_i.container).find('canvas')[0],
-                                    context  = canvas.getContext('2d'),
-                                    gradient = context.createLinearGradient(0, -1, 0, 1);
-
-                            var spectrum = [
-                                '#FF00FF', // 5, Magenta, 300°
-                                '#0000FF', // 4, Blue,    240°
-                                '#00FFFF', // 3, Cyan,    180°
-                                '#00FF00', // 2, Green,   120°
-                                '#FFFF00', // 1, Yellow,   60°
-                                '#FF0000'  // 0, Red,       0°
-                            ];
-                                    
-                                [1, -1].forEach(function(k) {
-                                    k /= 2 * (spectrum.length - 1);
-                                    spectrum.forEach(function(color, i) {
-                                        gradient.addColorStop(0.5 + k * i, color);
-                                    });
-                                });
-                                
-                                context.scale(canvas.width / (sample.duration * sample.mozSampleRate), -canvas.height / 2);
-                                context.translate(0, -1);
-                                context.fillStyle = gradient;
-                                
-                                var lastPower = 0;
-                                
-                                $(playerSample.audio).bind('MozAudioAvailable', function(event) {
-                                    //mozRequestAnimationFrame(function () {
-                                        var buffer = event.originalEvent.frameBuffer,
-                                            bufferWidth = buffer.length;
-                                        
-                                        context.translate(event.originalEvent.time * sample.mozSampleRate, 0);
-                                        context.beginPath();
-                                        {
-                                            context.moveTo(0, lastPower);
-                                            for (var i = 0, x = 1; i < buffer.length; i++, x++) {
-                                                context.lineTo(x, buffer[i]);
-                                            }
-                                            lastPower = buffer[buffer.length - 1];
-                                            context.lineTo(bufferWidth, 0);
-                                            context.lineTo(0, 0);
-                                        }
-                                        context.fill();
-                                        context.translate(-event.originalEvent.time * sample.mozSampleRate, 0);
-                                    //});
-                                });
-                   /////////////////////////     
-                    });
-                    player.play();
+                    play(samples);
                 });
                 var files = document.querySelectorAll('#files_tree .files_item');
                 [].forEach.call(files, function(file) {
@@ -111,36 +64,126 @@
                 
                 $('#files_tree').accordion();
                 $('#files_tree h').click(function() {
-                $(this).next().toggle('slow');
+                    $(this).next().toggle('slow');
                     return false;
                 }).next().hide();
+                function play(samples) {
+                    player.samples = [];
+                    samples.forEach(function(samples_i, i) {
+                        var sample = samples_i.container.data('sample');
+                        var offset = Math.abs(samples_i.container.position().left);
+                        var playerSample = player.addSample(sample, Math.round(offset/Row.PIXEL_PER_SECOND * 1000));
+                        var canvas   = $(samples_i.container).find('canvas')[0],
+                        context  = canvas.getContext('2d'),
+                        gradient = context.createLinearGradient(0, -1, 0, 1);
 
+                        var spectrum = [
+                            '#FF00FF', // 5, Magenta, 300°
+                            '#0000FF', // 4, Blue,    240°
+                            '#00FFFF', // 3, Cyan,    180°
+                            '#00FF00', // 2, Green,   120°
+                            '#FFFF00', // 1, Yellow,   60°
+                            '#FF0000'  // 0, Red,       0°
+                        ];
+                                    
+                        [1, -1].forEach(function(k) {
+                            k /= 2 * (spectrum.length - 1);
+                            spectrum.forEach(function(color, i) {
+                                gradient.addColorStop(0.5 + k * i, color);
+                            });
+                        });
+                                
+                        context.scale(canvas.width / (sample.duration * sample.mozSampleRate), -canvas.height / 2);
+                        context.translate(0, -1);
+                        context.fillStyle = gradient;
+                                
+                        var lastPower = 0;
+                                
+                        $(playerSample.audio).bind('MozAudioAvailable', function(event) {
+                            //mozRequestAnimationFrame(function () {
+                            var buffer = event.originalEvent.frameBuffer,
+                            bufferWidth = buffer.length;
+                                        
+                            context.translate(event.originalEvent.time * sample.mozSampleRate, 0);
+                            context.beginPath();
+                            {
+                                context.moveTo(0, lastPower);
+                                for (var i = 0, x = 1; i < buffer.length; i++, x++) {
+                                    context.lineTo(x, buffer[i]);
+                                }
+                                lastPower = buffer[buffer.length - 1];
+                                context.lineTo(bufferWidth, 0);
+                                context.lineTo(0, 0);
+                            }
+                            context.fill();
+                            context.translate(-event.originalEvent.time * sample.mozSampleRate, 0);
+                            //});
+                        });
+                        /////////////////////////     
+                    });
+                    player.play();
+                }
             });
+            
+
         </script>
     </head>
     <body>
-        <h1>AudioEditor <input type="button" value="Play" id="startPlayer"></h1>
-        <div class="effects">
-            
-        </div>
-        <div class="samples">
-            
-        </div>
-        <div class="worktable">
-            <div class="rows" id="dropper"  draggable="true">
-                
-            </div>
-            <div class="controls">
-                <input class="addRow" type="button" value="Add row">
-            </div>
-        </div>
-        <div class="completePlayer">
-            
-        </div>
-        <div class="files_tree" id="files_tree">
-           <?php echo $viewFilesTree; ?>
-        </div>
+        <div class="_site">
+            <table class="_site_table">
+                <tr class="_site_table_head_row">
+                    <td class="_site_table_left_cell"><h1>AudioEditor</h1></td>
+                    <td>
+                        <div class="play_button" id="startPlayer"><div></div></div>
+                        <div class="stop_button">
+                            <div class="stop_button_part"></div>
+                            <div class="space"></div>
+                            <div class="stop_button_part"></div>
+                        </div>
+                        <div class="progress">
+                            <div class="bar"></div>
+                            <div class="line"></div>
+                        </div>
+                    </td>
+                    <td class="_site_table_right_cell">
+                        <div class="track_info">
+                            LambdaTeam<br/>
+                            <!--small>Track Title (2.00)</small-->
+                        </div>
+                    </td>
+                </tr>
+                <tr class="_site_titles_row">
+                    <td>SAMPLES</td>
+                    <td>TRACKS</td>
+                    <td>VISUALIZATION</td>
+                </tr>
+                <tr class="_site_body_row" valign="top">
+                    <td class="_site_table_left_cell">
+                        <h3 class="sample_category">
+                            CATEGORY
+                        </h3>
+                        <div class="sample_category_items" id="files_tree">
 
+                            <?php echo $viewFilesTree; ?>
+
+                        </div>
+                    </td>
+                    <td>
+                        <div class="track_handler worktable" >
+                            <div class="rows" id="dropper"  draggable="true">
+
+                            </div>
+                            <div class="controls">
+                                <input class="addRow" type="button" value="Add row">
+                            </div>
+                        </div>
+                    </td>
+                    <td class="_site_table_right_cell"></td>
+                </tr>
+            </table>
+
+
+        </div>
         <script type="text/template" id="sample-template">
             <div class="sample" style="left: ${offset}px;">
                 <div class="tools">
@@ -149,6 +192,17 @@
                 </div>
                 <canvas style=" border-color: ${color}"></canvas>
                 <span>${title}</span>
+            </div>
+        </script>
+
+        <script type="text/template" id="one-row-template">
+            <div class="row" id="${id}">
+                <div class="sample_icon"></div>
+                <div class="space">
+                </div>
+                <div class="sample_row">
+                </div>
+
             </div>
         </script>
     </body>

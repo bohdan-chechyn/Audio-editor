@@ -11,7 +11,8 @@ Row.prototype = {
         this.samples = [];
         this.id = id;
         this.containerId = 'row-' + this.id;
-        this.container = '<div class="row" id="row-' + this.id + '"><img src="img/play.png"></div>';  
+        this.container = $('#one-row-template').html()
+        .replace('${id}', this.containerId);  
     },
     
     redraw: function() {
@@ -30,7 +31,7 @@ Row.prototype = {
                                             , color: $(sample).attr('data-color')
                                             , sampleId: sampleId});
         
-        $('#row-' + this.id).append(visualSample.container);
+        $('#row-' + this.id + ' .sample_row').append(visualSample.container);
         this.samples.push(visualSample);
     }
     
