@@ -45,6 +45,7 @@
 
                 });
                 $('#startPlayer').click(function() {
+                    player.samples = [];
                     var samples = worktable.getSamples();
                     for (var i = 0; i < samples.length; i++) {
                         var sample = samples[i].container.data('sample');
