@@ -33,7 +33,6 @@
                         } else {
                             row = e.target.parentNode;
                         }
-                        l(row);
                         rowId = row.id.split('-')[1];
                         var row = worktable.getRow(rowId);
                         var sample = $(e.dataTransfer.getData('text/html'))[0];
@@ -41,14 +40,18 @@
                         $(sample).bind('loadedmetadata',function(){
                             var offset = e.clientX - $('#row-' + row.id).offset().left - sample.duration/2 * Row.WIDTH_COEF;
                             row.addSample(sample, offset);
-                            
-                            player.addSample(sample.currentSrc, Math.round(offset/Row.PIXEL_PER_SECOND * 1000));
-                         })
+                        });
                     }
 
                 });
                 $('#startPlayer').click(function() {
-                l(player)
+                    var samples = worktable.getSamples();
+                    for (var i = 0; i < samples.length; i++) {
+                        var sample = samples[i].container.data('sample');
+                        var offset = samples[i].container.offset().left - sample.duration/2 * Row.WIDTH_COEF;
+                            
+                        player.addSample(sample.currentSrc, Math.round(offset/Row.PIXEL_PER_SECOND * 1000));
+                    } 
                     player.play();
                 });
                 var files = document.querySelectorAll('#files_tree .files_item');
@@ -90,13 +93,13 @@
         </div>
 
         <script type="text/template" id="sample-template">
-            <div class="sample" style="left: ${offset}px">
+            <div class="sample" style="left: ${offset}px;">
                 <div class="tools">
                     <input type="range" name="volume" value="100" >
                     <div class="close">X</div>        
                 </div>
-                <canvas></canvas>
-                ${title}
+                <canvas style=" border-color: ${color}"></canvas>
+                <span>${title}</span>
             </div>
         </script>
     </body>

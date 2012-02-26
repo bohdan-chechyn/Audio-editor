@@ -42,13 +42,22 @@ audio {display: none;}
     top: 0;
     right: 5px;
 }
+.sample {
+    resize: horizontal;
+    text-align: center;
+    line-height: 30px;
+}
 .sample canvas {
     height: 30px;
-    border:1px solid blue;
+    border:3px solid blue;
     position: absolute;
     top:0; left:0;
     z-index: 10;
     width: 100%;
+    resize: horizontal;
+}
+.sample span {
+
 }
 input[type="range"] {
     width: 90px;

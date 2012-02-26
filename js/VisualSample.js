@@ -6,13 +6,16 @@ VisualSample.prototype = {
     init: function(options) {
         var container = $('#sample-template').html()
         .replace('${title}', options.title)
+        .replace('${color}', options.color)
         .replace('${offset}', options.offset);
-        container = $(container).css('width', options.width);
-        container.id = options.sampleId;
-        container.data('sample', options.sample);
-        container.bind('mouseover', this.showTools);
-        container.bind('mouseout', this.hideTools);
-        container.find('.close').bind('click', this.destroy);
+        container = $(container).css('width', options.width)
+        .draggable({
+            axis: 'x'
+        });
+        container.data('sample', options.sample)
+                .bind('mouseover', this.showTools)
+                .bind('mouseout', this.hideTools)
+                .find('.close').bind('click', this.destroy);
         this.container = container;
     },
     

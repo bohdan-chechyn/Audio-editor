@@ -8,6 +8,7 @@ Row.prototype = {
     samples: [],
     
     init: function(id) {
+        this.samples = [];
         this.id = id;
         this.containerId = 'row-' + this.id;
         this.container = '<div class="row" id="row-' + this.id + '"><img src="img/play.png"></div>';  
@@ -21,11 +22,12 @@ Row.prototype = {
         var sampleId = 'sample-' + this.samples.length;
         var width = Math.round(sample.duration * Row.WIDTH_COEF);
         offset = Math.round(offset);
-        l(width)
+       
         var visualSample = new VisualSample({ sample: sample
                                             , width: width
                                             , offset: offset
                                             , title: $(sample).attr('data-name')
+                                            , color: $(sample).attr('data-color')
                                             , sampleId: sampleId});
         
         $('#row-' + this.id).append(visualSample.container);
@@ -34,5 +36,5 @@ Row.prototype = {
     
 }
 
-Row.WIDTH_COEF = 5;
+Row.WIDTH_COEF = 40;
 Row.PIXEL_PER_SECOND = 100;

@@ -28,5 +28,22 @@ Worktable.prototype = {
     
     setFilesDragger: function(fd) {
         this.dragger = fd;
+    },
+    
+    samplesCount: function() {
+        var count = 0;
+        for (var i = 0; i < this.rows.length; i++) {
+            count += this.rows[i].length;
+        }
+        return count;
+    },
+    
+    getSamples: function() {
+        var samples = [];
+        for (var i = 0; i < this.rows.length; i++) {
+            
+            samples = samples.concat(this.rows[i].samples);
+        }
+        return samples;
     }
 }
