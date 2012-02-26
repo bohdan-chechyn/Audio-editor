@@ -5,10 +5,9 @@ VisualSample.prototype = {
     container: null,
     init: function(options) {
         var container = $('#sample-template').html()
-        .replace('${width}', options.width)
         .replace('${title}', options.title)
         .replace('${offset}', options.offset);
-        container = $(container);
+        container = $(container).css('width', options.width);
         container.id = options.sampleId;
         container.data('sample', options.sample);
         container.bind('mouseover', this.showTools);

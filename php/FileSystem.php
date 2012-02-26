@@ -35,13 +35,14 @@ class FileSystem
             $retval[] = $fileInfo;
             
          } elseif (is_readable("$dir$entry")) {
+            $category = end(explode('/samples/', $dir));
             $retval[] = array(
                 "pure_name"   => $entry,
                 "name" => "$dir$entry",
                 "type" => mime_content_type("$dir$entry"),
                 "size" => filesize("$dir$entry"),
                 "lastmod" => filemtime("$dir$entry"),
-                "url"      => "/samples/"."$entry",
+                "url"      => "/samples/$category$entry",
             );
          }
       }

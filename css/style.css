@@ -25,7 +25,8 @@ audio {display: none;}
     top: 30px;
     left: 0px;
     z-index: 100;
-    width: 100%;
+    width: 110px;
+    height: 20px;
     border:1px solid red;
     border-radius: 4px;
     padding: 4px;
@@ -47,4 +48,10 @@ audio {display: none;}
     position: absolute;
     top:0; left:0;
     z-index: 10;
+    width: 100%;
+}
+input[type="range"] {
+    width: 90px;
+    display: block;
+
 }
