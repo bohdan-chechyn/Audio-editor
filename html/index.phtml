@@ -55,6 +55,13 @@
                 $('#startPlayer').click(function() {
                     var samples = worktable.getSamples();
                     play(samples);
+                    $('#startPlayer').addClass("play_off");
+                    $('#stopPlayer').removeClass("stop_off");
+                });
+                $('#stopPlayer').click(function(){
+                    
+                    $('#startPlayer').removeClass("play_off");
+                    $('#stopPlayer').addClass("stop_off"); 
                 });
                 var files = document.querySelectorAll('#files_tree .files_item');
                 [].forEach.call(files, function(file) {
@@ -62,11 +69,13 @@
                 })
                 currentDragger.initDropper(document.getElementById('dropper'));              
                 
-                $('#files_tree').accordion();
-                $('#files_tree h').click(function() {
-                    $(this).next().toggle('slow');
-                    return false;
-                }).next().hide();
+                $('#files_tree').accordion({"active": 1});
+//                $('#files_tree').accordion("show", 0);
+//                
+//                $('#files_tree h').click(function() {
+//                    $(this).next().toggle('slow');
+//                    return false;
+//                }).next().hide();
                 function play(samples) {
                     player.samples = [];
                     samples.forEach(function(samples_i, i) {
@@ -135,9 +144,12 @@
                     <td class="_site_table_left_cell"><h1>AudioEditor</h1></td>
                     <td>
                         <div class="_site_table_control_cell">
-                            <div class="play_button" id="startPlayer"><div></div></div>
+                            <div class="play_button" >
+                                <div id="startPlayer"></div>
+                                
+                            </div>
                             <div class="stop_button">
-                                <div class="stop_button_part"></div>
+                                <div class="stop_button_part stop_off" id="stopPlayer"></div>
                             </div>
                             <div class="progress">
                                 <div class="bar"></div>

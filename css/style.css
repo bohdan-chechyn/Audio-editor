@@ -122,7 +122,12 @@ h1 {
     width: 100%;
     position: relative;
 }
-
+.play_off{
+    border-left-color: #9d9e9e!important;
+}
+.stop_off {
+    background-color: #9d9e9e !important;
+}
 .play_button {
     width: 4.5%;
     padding: 0 0.5em;
