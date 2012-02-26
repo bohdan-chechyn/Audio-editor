@@ -1,0 +1,229 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <style type="text/css">
+            body {
+                font-family: Arial;
+                color:#710909;
+            }
+            h1 {
+                font-size: 2.3em;
+            }
+            ._site 
+            {
+                top:0;
+                left:0;
+                margin:0px;
+                padding:1%;
+                background: #eff4f9;
+                width:100%;
+                height: 100%;
+                position: fixed;
+            }
+            ._site_table{
+                width: 98%;
+                height: 98%;
+                border-collapse: collapse;
+                /*border: 1px groove #fafafa;*/
+                background: #f6f4f9;
+            }
+            ._site_table tr td{
+                border: 1px solid;
+                border-color: #d1dbdb;
+                padding: 1%;
+            }
+            ._site_table_head_row td{
+            }
+            ._site_table_head_row{
+                height: 14%;
+            }
+            ._site_titles_row {
+                 height: 0%;
+            }
+            ._site_titles_row td{
+                height: 0%;
+                border-collapse: collapse;
+                padding: 0.3% !important;
+                margin: 0 !important;
+                text-align: center;
+                font-size: 0.78em;
+            }
+            ._site_table_left_cell {
+                width: 19%;
+            }
+            
+            
+            .play_button {
+                width: 40px;
+                padding: 0 15px;
+                float: left;
+            }
+            .stop_button {
+                width: 50px;
+                padding: 0 24px;
+                float: left;
+            }
+            .play_button div {
+                
+                width: 0;
+                height: 0;
+                border-top: 30px solid transparent;
+                border-bottom: 30px solid transparent;
+
+                border-left: 50px solid;
+                border-left-color: #b86767;
+                
+            }
+            .stop_button .stop_button_part {
+                width: 8px;
+                padding-right: 10px;
+                height: 60px;
+                float:left;
+                background-color: #b86767;
+            }
+            
+            .stop_button .space {
+                width:6px;
+                float:left;
+                height: 10px;
+            }
+            .progress {
+                width: 625px;
+                height: 60px;
+                float:left;
+                position: relative;
+            }
+            .progress .line {
+                width: 100%;
+                background: #b86767;
+                height: 5px;
+                position: absolute;
+                bottom: 0;
+            }
+            .progress .bar {
+                width: 30px;
+                height: 20px;
+                bottom: 0;
+                position: absolute;
+                background: #b86767;
+            }
+            
+            ._site_table_right_cell {
+                width: 18%;
+                
+            }
+            .track_info {
+                padding-left: 12px;
+            }
+            .track_handler{
+                width: 96%;
+                height: 96%;
+                padding: 2%;
+            }
+            .track_item {
+                height: 30px;
+                width: 100%;
+                margin-bottom: 3%;
+            }
+            .sample_icon{
+                background: #a9df9a;
+                width: 7%;
+                float:left;
+                height: 100%;
+            }
+            .sample_row{
+                background: #fff;
+                width: 90%;
+                float:left;
+                height: 100%;
+            }
+            .track_item .space {
+                float:left; 
+                width: 3%;
+                height: 20px;
+            }
+            .sample_category{
+                font-size: 1em;
+                font-weight: bold;
+            }
+            .sample_category_item {
+                font-size: 0.9em;
+                padding-left: 1em;
+            }
+            ._site_table_left_cell{
+                vertical-align: top;
+                margin: 1% !important;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="_site">
+            <table class="_site_table">
+                <tr class="_site_table_head_row">
+                    <td class="_site_table_left_cell"><h1>HUGE TITLE</h1></td>
+                    <td>
+                        <div class="play_button"><div></div></div>
+                        <div class="stop_button">
+                            <div class="stop_button_part"></div>
+                            <div class="space"></div>
+                            <div class="stop_button_part"></div>
+                        </div>
+                        <div class="progress">
+                            <div class="bar"></div>
+                            <div class="line"></div>
+                        </div>
+                    </td>
+                    <td class="_site_table_right_cell">
+                        <div class="track_info">
+                            Artist Name<br/>
+                            <small>Track Title (2.00)</small>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="_site_titles_row">
+                    <td>SAMPLES</td>
+                    <td>TRACKS</td>
+                    <td>VISUALIZATION</td>
+                </tr>
+                <tr class="_site_body_row">
+                    <td class="_site_table_left_cell">
+                        <h3 class="sample_category">
+                            CATEGORY
+                        </h3>
+                        <div class="sample_category_items">
+                            <div class="sample_category_item">ITEM</div>
+                            <div class="sample_category_item">ITEM</div>
+                            <div class="sample_category_item">ITEM</div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="track_handler">
+                            <div class="track_item">
+                                <div class="sample_icon"></div>
+                                <div class="space"></div>
+                                <div class="sample_row"></div>
+                            </div>
+                            <div class="track_item">
+                                <div class="sample_icon"></div>
+                                <div class="space"></div>
+                                <div class="sample_row"></div>
+                            </div>
+                            <div class="track_item">
+                                <div class="sample_icon"></div>
+                                <div class="space"></div>
+                                <div class="sample_row"></div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="_site_table_right_cell"></td>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>
