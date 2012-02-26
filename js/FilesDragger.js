@@ -34,7 +34,7 @@ function FilesDragger()
       // got it
 
       e.dataTransfer.effectAllowed = 'move';
-      e.dataTransfer.setData('text/html', '<audio controls="controls"><source src="'+this.getAttribute('url')+'" type="audio/ogg" /></audio>');
+      e.dataTransfer.setData('text/html', '<audio data-name="'+this.getAttribute('data-name')+'" data-color="'+this.getAttribute('data-color')+'" controls="controls"><source src="'+this.getAttribute('data-url')+'" type="audio/ogg" /></audio>');
 
       this.style.opacity = '0.4'; 
       return false;
