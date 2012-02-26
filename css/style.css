@@ -166,7 +166,7 @@ h1 {
     height: 10px;
 }
 .progress {
-    width: 78%;
+    width: 82%;
     height: 3.3em;
     float:left;
     position: relative;
@@ -179,7 +179,7 @@ h1 {
     bottom: 0;
 }
 .progress .bar {
-    width: 10px;
+    width: 24px;
     height: 20px;
     bottom: 0;
     position: absolute;
@@ -250,4 +250,12 @@ h1 {
     float:right;
     width: 10em;
     margin-right: 2%;
+}
+._cp {
+    color:#666666;
+    font-size: 0.8em;
+    text-align: center;
+    position: fixed;
+    bottom:0.5%;
+    width: 100%;
 }
