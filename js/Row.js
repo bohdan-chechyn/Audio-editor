@@ -25,7 +25,7 @@ Row.prototype = {
         var visualSample = new VisualSample({ sample: sample
                                             , width: width
                                             , offset: offset
-                                            , title: $(sample).attr('data-title')
+                                            , title: $(sample).attr('data-name')
                                             , sampleId: sampleId});
         
         $('#row-' + this.id).append(visualSample.container);
