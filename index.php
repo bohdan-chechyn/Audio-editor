@@ -8,7 +8,7 @@ require_once 'php/FilesTree.php';
 $fileSystem = new FileSystem();
 
 
-$files = $fileSystem->getFileList(__DIR__."/samples/");
+$files = $fileSystem->getFileList(dirname(__FILE__)."/samples/");
 
 $viewFilesTree = FilesTree::drawTree($files, 0, "");
 
